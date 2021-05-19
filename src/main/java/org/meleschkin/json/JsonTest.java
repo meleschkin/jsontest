@@ -11,7 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class JsonTest {
-    private static Logger LOG = LogManager.getLogger(JsonTest.class);
+    private static final Logger LOG = LogManager.getLogger(JsonTest.class);
 
     public static void main(String[] args) {
         BasicConfigurator.configure();

@@ -22,6 +22,7 @@ public class JsonTest {
             JsonNode jsonNode = objectMapper.readTree(input);
             LOG.info("GK-Wert: " + jsonNode.get("analysisResult").get("gk").asText());
             LOG.info("Ort: " + jsonNode.get("reportParameter").get("pointLocationParameters").get("cityName").asText());
+            LOG.info("RefNum: " + jsonNode.get("refNum").asText());
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
         }

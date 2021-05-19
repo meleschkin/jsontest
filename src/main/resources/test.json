@@ -1,0 +1,26 @@
+{
+  "analysisId": "d0ec5932-2731-428d-ae42-582a247a84c0",
+  "refNum": "16642729",
+  "analysisResult": {
+    "gk": 1,
+    "brookZone": "",
+    "islandZone": "",
+    "costalZone": "",
+    "intenseRainRisk": 2,
+    "version": 2020
+  },
+  "reportParameter": {
+    "pointLocationParameters": {
+      "lon": 6.818760759282335,
+      "lat": 50.99620055518275,
+      "x": 346938.47,
+      "y": 5651666.97,
+      "zipCode": "50259",
+      "cityName": "Pulheim",
+      "streetName": "Pletschmühlenweg",
+      "houseNumber": "128"
+    }
+  },
+  "processingIndicator": 46
+}
+

@@ -23,6 +23,9 @@ public class JsonTest {
             LOG.info("GK-Wert: " + jsonNode.get("analysisResult").get("gk").asText());
             LOG.info("Ort: " + jsonNode.get("reportParameter").get("pointLocationParameters").get("cityName").asText());
             LOG.info("RefNum: " + jsonNode.get("refNum").asText());
+            double test = 10.481928082;
+            String sTest = "Test=" + test;
+            LOG.info(sTest);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
         }
@@ -30,7 +33,7 @@ public class JsonTest {
 
     private static String readFile(String file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
-        String line = null;
+        String line;
         StringBuilder stringBuilder = new StringBuilder();
 
         try {

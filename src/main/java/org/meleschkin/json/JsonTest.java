@@ -32,18 +32,15 @@ public class JsonTest {
     }
 
     private static String readFile(String file) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        String line;
-        StringBuilder stringBuilder = new StringBuilder();
 
-        try {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            StringBuilder stringBuilder = new StringBuilder();
             while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line);
             }
 
             return stringBuilder.toString();
-        } finally {
-            reader.close();
         }
     }
 }

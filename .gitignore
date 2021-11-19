@@ -1,10 +1,2 @@
-/.idea/codeStyles/codeStyleConfig.xml
-/.idea/intellij-javadocs-4.0.1.xml
-/.idea/jarRepositories.xml
-/.idea/misc.xml
-/.idea/codeStyles/Project.xml
-/.idea/inspectionProfiles/Project_Default.xml
-/.idea/runConfigurations.xml
-/.idea/vcs.xml
-/.idea/git_toolbox_prj.xml
+/.idea/
 /target/

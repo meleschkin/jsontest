@@ -2,32 +2,31 @@ package org.meleschkin.json;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.log4j.Log4j;
 import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+@Log4j
 public class JsonTest {
-    private static final Logger LOG = LogManager.getLogger(JsonTest.class);
 
     public static void main(String[] args) {
         BasicConfigurator.configure();
         try {
             String input = readFile("src/main/resources/test.json");
-            LOG.info(input);
+            log.info(input);
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(input);
-            LOG.info("GK-Wert: " + jsonNode.get("analysisResult").get("gk").asText());
-            LOG.info("Ort: " + jsonNode.get("reportParameter").get("pointLocationParameters").get("cityName").asText());
-            LOG.info("RefNum: " + jsonNode.get("refNum").asText());
+            log.info("GK-Wert: " + jsonNode.get("analysisResult").get("gk").asText());
+            log.info("Ort: " + jsonNode.get("reportParameter").get("pointLocationParameters").get("cityName").asText());
+            log.info("RefNum: " + jsonNode.get("refNum").asText());
             double test = 10.481928082;
             String sTest = "Test=" + test;
-            LOG.info(sTest);
+            log.info(sTest);
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
     }
 

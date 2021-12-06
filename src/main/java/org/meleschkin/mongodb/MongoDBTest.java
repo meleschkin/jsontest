@@ -1,10 +1,13 @@
 package org.meleschkin.mongodb;
 
-import com.mongodb.*;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.MongoCredential;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import lombok.extern.log4j.Log4j;
 import org.apache.log4j.BasicConfigurator;
-
-import java.util.List;
+import org.bson.Document;
 
 @Log4j
 public class MongoDBTest {
@@ -12,7 +15,7 @@ public class MongoDBTest {
     public static void main(String[] args) {
         BasicConfigurator.configure();
         try {
-            MongoClientURI mongoClientURI = new MongoClientURI("mongodb://meleschkin:sesamavm123@cluster0.pjfca.mongodb.net");
+            MongoClientURI mongoClientURI = new MongoClientURI("mongodb+srv://meleschkin:sesamavm123@cluster0.pjfca.mongodb.net");
             MongoCredential mcu = mongoClientURI.getCredentials();
             if (mcu != null) {
                 log.info(mcu.toString());
@@ -20,17 +23,16 @@ public class MongoDBTest {
                 log.info(mcu.getPassword());
             }
             MongoClient mongoClient = new MongoClient(mongoClientURI);
-            List<MongoCredential> mcn = mongoClient.getCredentialsList();
-            for (MongoCredential mc : mcn) {
+            MongoCredential mc = mongoClient.getCredential();
+            if (mc != null) {
                 log.info(mc.toString());
                 log.info(mc.getUserName());
                 log.info(mc.getPassword());
             }
-            DB database = mongoClient.getDB("sample_analytics");
-            log.info(database.toString());
-            DBCollection collection = database.getCollection("customers");
-            log.info(collection.toString());
-            //  log.info("Count: " + collection.getCount());
+            MongoDatabase database = mongoClient.getDatabase("sample_analytics");
+            log.info(database.getName());
+            MongoCollection<Document> collection = database.getCollection("customers");
+            // log.info("Count: " + collection.countDocuments());
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }

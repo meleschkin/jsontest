@@ -9,6 +9,7 @@ import com.mongodb.client.MongoDatabase;
 import lombok.extern.log4j.Log4j;
 import org.apache.log4j.BasicConfigurator;
 import org.bson.Document;
+import org.bson.json.JsonWriterSettings;
 
 @Log4j
 public class MongoDBTest {
@@ -36,6 +37,10 @@ public class MongoDBTest {
             MongoNamespace mn = collection.getNamespace();
             log.info(mn.toString());
             log.info("Count: " + collection.countDocuments());
+            Document doc = collection.find().first();
+            JsonWriterSettings.Builder builder = JsonWriterSettings.builder().indent(true);
+            String json = doc.toJson(builder.build());
+            log.info(json);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }

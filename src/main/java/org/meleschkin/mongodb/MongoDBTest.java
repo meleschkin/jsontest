@@ -3,6 +3,7 @@ package org.meleschkin.mongodb;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.MongoCredential;
+import com.mongodb.MongoNamespace;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import lombok.extern.log4j.Log4j;
@@ -32,6 +33,8 @@ public class MongoDBTest {
             MongoDatabase database = mongoClient.getDatabase("sample_analytics");
             log.info(database.getName());
             MongoCollection<Document> collection = database.getCollection("customers");
+            MongoNamespace mn = collection.getNamespace();
+            log.info(mn.toString());
             log.info("Count: " + collection.countDocuments());
         } catch (Exception e) {
             log.error(e.getMessage(), e);

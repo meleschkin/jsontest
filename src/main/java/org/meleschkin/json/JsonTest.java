@@ -2,12 +2,12 @@ package org.meleschkin.json;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j;
 import org.apache.log4j.BasicConfigurator;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 
 @Log4j
 public class JsonTest {
@@ -30,7 +30,8 @@ public class JsonTest {
         }
     }
 
-    private static String readFile(String file) throws IOException {
+    @SneakyThrows
+    private static String readFile(String file) {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;

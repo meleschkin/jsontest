@@ -10,6 +10,10 @@ import lombok.extern.log4j.Log4j;
 import org.apache.log4j.BasicConfigurator;
 import org.bson.Document;
 import org.bson.json.JsonWriterSettings;
+import org.meleschkin.config.Configuration;
+import org.meleschkin.config.Configurator;
+
+import java.util.Base64;
 
 @Log4j
 public class MongoDBTest {
@@ -17,7 +21,12 @@ public class MongoDBTest {
     public static void main(String[] args) {
         BasicConfigurator.configure();
         try {
-            MongoClientURI mongoClientURI = new MongoClientURI("mongodb+srv://meleschkin:sesamavm123@cluster0.pjfca.mongodb.net");
+            Configuration config = Configurator.readConfigFile();
+            log.info(config.toString());
+            byte[] clientBytes = Base64.getDecoder().decode(config.getMongoClientURI());
+            String clientURI = new String(clientBytes);
+            log.info(clientURI);
+            MongoClientURI mongoClientURI = new MongoClientURI(clientURI);
             MongoCredential mcu = mongoClientURI.getCredentials();
             if (mcu != null) {
                 log.info(mcu.toString());
@@ -31,9 +40,9 @@ public class MongoDBTest {
                 log.info(mc.getUserName());
                 log.info(mc.getPassword());
             }
-            MongoDatabase database = mongoClient.getDatabase("sample_analytics");
+            MongoDatabase database = mongoClient.getDatabase(config.getDatabase());
             log.info(database.getName());
-            MongoCollection<Document> collection = database.getCollection("customers");
+            MongoCollection<Document> collection = database.getCollection(config.getCollection());
             MongoNamespace mn = collection.getNamespace();
             log.info(mn.toString());
             log.info("Count: " + collection.countDocuments());

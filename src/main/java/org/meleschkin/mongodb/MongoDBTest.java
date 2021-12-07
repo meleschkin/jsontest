@@ -32,7 +32,7 @@ public class MongoDBTest {
             MongoDatabase database = mongoClient.getDatabase("sample_analytics");
             log.info(database.getName());
             MongoCollection<Document> collection = database.getCollection("customers");
-            // log.info("Count: " + collection.countDocuments());
+            log.info("Count: " + collection.countDocuments());
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }

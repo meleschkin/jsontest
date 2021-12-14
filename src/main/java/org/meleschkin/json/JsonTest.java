@@ -3,17 +3,20 @@ package org.meleschkin.json;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
-import lombok.extern.log4j.Log4j;
-import org.apache.log4j.BasicConfigurator;
+import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
+import org.apache.logging.log4j.core.config.DefaultConfiguration;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-@Log4j
+@Log4j2
 public class JsonTest {
 
     public static void main(String[] args) {
-        BasicConfigurator.configure();
+        Configurator.initialize(new DefaultConfiguration());
+        Configurator.setRootLevel(Level.INFO);
         try {
             String input = readFile("src/main/resources/test.json");
             log.info(input);

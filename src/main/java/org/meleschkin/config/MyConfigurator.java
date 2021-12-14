@@ -3,16 +3,19 @@ package org.meleschkin.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import lombok.SneakyThrows;
-import lombok.extern.log4j.Log4j;
-import org.apache.log4j.BasicConfigurator;
+import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
+import org.apache.logging.log4j.core.config.DefaultConfiguration;
 
 import java.io.File;
 
-@Log4j
-public class Configurator {
+@Log4j2
+public class MyConfigurator {
 
     public static void main(String[] args) {
-        BasicConfigurator.configure();
+        Configurator.initialize(new DefaultConfiguration());
+        Configurator.setRootLevel(Level.INFO);
         try {
             Configuration config = readConfigFile();
             log.info(config.toString());

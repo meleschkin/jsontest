@@ -6,22 +6,25 @@ import com.mongodb.MongoCredential;
 import com.mongodb.MongoNamespace;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import lombok.extern.log4j.Log4j;
-import org.apache.log4j.BasicConfigurator;
+import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
+import org.apache.logging.log4j.core.config.DefaultConfiguration;
 import org.bson.Document;
 import org.bson.json.JsonWriterSettings;
 import org.meleschkin.config.Configuration;
-import org.meleschkin.config.Configurator;
+import org.meleschkin.config.MyConfigurator;
 
 import java.util.Base64;
 
-@Log4j
+@Log4j2
 public class MongoDBTest {
 
     public static void main(String[] args) {
-        BasicConfigurator.configure();
+        Configurator.initialize(new DefaultConfiguration());
+        Configurator.setRootLevel(Level.INFO);
         try {
-            Configuration config = Configurator.readConfigFile();
+            Configuration config = MyConfigurator.readConfigFile();
             log.info(config.toString());
             byte[] clientBytes = Base64.getDecoder().decode(config.getMongoClientURI());
             String clientURI = new String(clientBytes);

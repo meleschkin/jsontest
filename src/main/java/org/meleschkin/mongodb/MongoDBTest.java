@@ -36,24 +36,25 @@ public class MongoDBTest {
                 log.info(mcu.getUserName());
                 log.info(mcu.getPassword());
             }
-            MongoClient mongoClient = new MongoClient(mongoClientURI);
-            MongoCredential mc = mongoClient.getCredential();
-            if (mc != null) {
-                log.info(mc.toString());
-                log.info(mc.getUserName());
-                log.info(mc.getPassword());
-            }
-            MongoDatabase database = mongoClient.getDatabase(config.getDatabase());
-            log.info(database.getName());
-            MongoCollection<Document> collection = database.getCollection(config.getCollection());
-            MongoNamespace mn = collection.getNamespace();
-            log.info(mn.toString());
-            log.info("Count: " + collection.countDocuments());
-            Document doc = collection.find().first();
-            if (doc != null) {
-                JsonWriterSettings.Builder builder = JsonWriterSettings.builder().indent(true);
-                String json = doc.toJson(builder.build());
-                log.info(json);
+            try (MongoClient mongoClient = new MongoClient(mongoClientURI)) {
+                MongoCredential mc = mongoClient.getCredential();
+                if (mc != null) {
+                    log.info(mc.toString());
+                    log.info(mc.getUserName());
+                    log.info(mc.getPassword());
+                }
+                MongoDatabase database = mongoClient.getDatabase(config.getDatabase());
+                log.info(database.getName());
+                MongoCollection<Document> collection = database.getCollection(config.getCollection());
+                MongoNamespace mn = collection.getNamespace();
+                log.info(mn.toString());
+                log.info("Count: " + collection.countDocuments());
+                Document doc = collection.find().first();
+                if (doc != null) {
+                    JsonWriterSettings.Builder builder = JsonWriterSettings.builder().indent(true);
+                    String json = doc.toJson(builder.build());
+                    log.info(json);
+                }
             }
         } catch (Exception e) {
             log.error(e.getMessage(), e);

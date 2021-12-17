@@ -1,6 +1,8 @@
 package org.meleschkin.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.Level;
@@ -10,6 +12,8 @@ import org.joda.time.LocalDate;
 import org.meleschkin.eo.Adresse;
 import org.meleschkin.eo.Familie;
 import org.meleschkin.eo.Person;
+
+import java.io.ByteArrayOutputStream;
 
 @Log4j2
 public class JacksonTest {
@@ -21,6 +25,7 @@ public class JacksonTest {
             Familie meleschkin = getFamilie();
             log.info(meleschkin.toString());
             log.info(jsonFamilie(meleschkin));
+            log.info(yamlFamilie(meleschkin));
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -58,4 +63,21 @@ public class JacksonTest {
         mapper.findAndRegisterModules();
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(familie);
     }
+
+    @SneakyThrows
+    public static String yamlFamilie(Familie familie) {
+        if (familie == null) {
+            return "";
+        }
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+        mapper.findAndRegisterModules();
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        String yaml;
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
+            mapper.writeValue(bos, familie);
+            yaml = bos.toString();
+        }
+        return yaml;
+    }
+
 }

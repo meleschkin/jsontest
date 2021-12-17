@@ -1,5 +1,7 @@
 package org.meleschkin.json;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.config.Configurator;
@@ -15,8 +17,13 @@ public class JacksonTest {
     public static void main(String[] args) {
         Configurator.initialize(new DefaultConfiguration());
         Configurator.setRootLevel(Level.INFO);
-        Familie meleschkin = getFamilie();
-        log.info(meleschkin.toString());
+        try {
+            Familie meleschkin = getFamilie();
+            log.info(meleschkin.toString());
+            log.info(jsonFamilie(meleschkin));
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
     }
 
     private static Familie getFamilie() {
@@ -40,5 +47,15 @@ public class JacksonTest {
         meleschkin.getPersonen().add(andrei);
         meleschkin.getPersonen().add(ramona);
         return meleschkin;
+    }
+
+    @SneakyThrows
+    private static String jsonFamilie(Familie familie) {
+        if (familie == null) {
+            return "";
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.findAndRegisterModules();
+        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(familie);
     }
 }

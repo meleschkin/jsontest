@@ -26,7 +26,7 @@ public class JacksonTest {
         }
     }
 
-    private static Familie getFamilie() {
+    public static Familie getFamilie() {
         Person andrei = new Person();
         andrei.setVorname("Andrei");
         andrei.setName("Meleschkin");
@@ -50,7 +50,7 @@ public class JacksonTest {
     }
 
     @SneakyThrows
-    private static String jsonFamilie(Familie familie) {
+    public static String jsonFamilie(Familie familie) {
         if (familie == null) {
             return "";
         }

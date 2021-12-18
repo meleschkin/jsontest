@@ -46,16 +46,24 @@ public class MongoDBTest {
                     log.info(mc.getPassword());
                 }
                 log.info("Databases");
-                List<String> databases = mongoClient.listDatabaseNames().into(new ArrayList<>());
-                for (String db : databases) {
-                    log.info(db);
+                List<String> databaseNames = mongoClient.listDatabaseNames().into(new ArrayList<>());
+                for (String dbNames : databaseNames) {
+                    log.info(dbNames);
+                }
+                List<Document> databases = mongoClient.listDatabases().into(new ArrayList<>());
+                for (Document db : databases) {
+                    log.info(db.toJson());
                 }
                 MongoDatabase database = mongoClient.getDatabase(config.getDatabase());
                 log.info(database.getName());
                 log.info("Collections in " + database.getName());
-                List<String> collections = database.listCollectionNames().into(new ArrayList<>());
-                for (String col : collections) {
-                    log.info(col);
+                List<String> collectionNames = database.listCollectionNames().into(new ArrayList<>());
+                for (String colNames : collectionNames) {
+                    log.info(colNames);
+                }
+                List<Document> collections = database.listCollections().into(new ArrayList<>());
+                for (Document col : collections) {
+                    log.info(col.toJson());
                 }
                 MongoCollection<Document> collection = database.getCollection(config.getCollection());
                 MongoNamespace mn = collection.getNamespace();

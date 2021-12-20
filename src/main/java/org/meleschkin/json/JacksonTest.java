@@ -25,6 +25,7 @@ public class JacksonTest {
         try {
             Familie meleschkin = getFamilie();
             log.info(meleschkin.toString());
+            log.info(jsonFamilieSimple(meleschkin));
             log.info(jsonFamilie(meleschkin));
             log.info(yamlFamilie(meleschkin));
         } catch (Exception e) {
@@ -63,6 +64,16 @@ public class JacksonTest {
         ObjectMapper mapper = new ObjectMapper();
         mapper.findAndRegisterModules();
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(familie);
+    }
+
+    @SneakyThrows
+    public static String jsonFamilieSimple(Familie familie) {
+        if (familie == null) {
+            return "";
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.findAndRegisterModules();
+        return mapper.writeValueAsString(familie);
     }
 
     @SneakyThrows

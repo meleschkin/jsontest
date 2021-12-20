@@ -12,4 +12,6 @@ public final class Configuration {
     private String mongoClientURI;
     private String database;
     private String collection;
+    private String mydatabase;
+    private String mycollection;
 }

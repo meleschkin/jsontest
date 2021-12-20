@@ -60,6 +60,8 @@ public class MongoCRUDTest {
                     log.info(docdb.toString());
                     String jsondocdb = docdb.toJson(builder.build());
                     log.info(jsondocdb);
+                    ObjectId oiddb = (ObjectId) docdb.get("_id");
+                    log.info(oiddb.toString());
                     docdb.remove("_id");
                     String jsondocdbs = docdb.toJson();
                     log.info(jsondocdbs);

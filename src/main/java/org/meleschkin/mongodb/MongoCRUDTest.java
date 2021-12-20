@@ -60,7 +60,9 @@ public class MongoCRUDTest {
                     log.info(docdb.toString());
                     String jsondocdb = docdb.toJson(builder.build());
                     log.info(jsondocdb);
+                    docdb.remove("_id");
                     String jsondocdbs = docdb.toJson();
+                    log.info(jsondocdbs);
                     Familie fam = JacksonTest.getFamilie(jsondocdbs);
                     log.info(JacksonTest.yamlFamilie(fam));
                 }

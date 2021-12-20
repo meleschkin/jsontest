@@ -1,6 +1,5 @@
 package org.meleschkin.json;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
@@ -66,7 +65,7 @@ public class JacksonTest {
         if (familie == null) {
             return "";
         }
-        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        ObjectMapper mapper = new ObjectMapper();
         mapper.findAndRegisterModules();
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(familie);
     }

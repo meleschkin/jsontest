@@ -60,6 +60,9 @@ public class MongoCRUDTest {
                     log.info(docdb.toString());
                     String jsondocdb = docdb.toJson(builder.build());
                     log.info(jsondocdb);
+                    String jsondocdbs = docdb.toJson();
+                    Familie fam = JacksonTest.getFamilie(jsondocdbs);
+                    log.info(JacksonTest.yamlFamilie(fam));
                 }
                 collection.findOneAndDelete(query);
                 log.info("Count: " + collection.countDocuments());

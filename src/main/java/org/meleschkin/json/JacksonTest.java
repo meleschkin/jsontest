@@ -1,11 +1,13 @@
 package org.meleschkin.json;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.apache.logging.log4j.core.config.DefaultConfiguration;
@@ -25,9 +27,12 @@ public class JacksonTest {
         try {
             Familie meleschkin = getFamilie();
             log.info(meleschkin.toString());
-            log.info(jsonFamilieSimple(meleschkin));
+            String json = jsonFamilieSimple(meleschkin);
+            log.info(json);
             log.info(jsonFamilie(meleschkin));
             log.info(yamlFamilie(meleschkin));
+            Familie fam = getFamilie(json);
+            log.info(yamlFamilie(fam));
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -61,7 +66,7 @@ public class JacksonTest {
         if (familie == null) {
             return "";
         }
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mapper.findAndRegisterModules();
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(familie);
     }
@@ -74,6 +79,16 @@ public class JacksonTest {
         ObjectMapper mapper = new ObjectMapper();
         mapper.findAndRegisterModules();
         return mapper.writeValueAsString(familie);
+    }
+
+    @SneakyThrows
+    public static Familie getFamilie(String json) {
+        if (StringUtils.isBlank(json)) {
+            return null;
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.findAndRegisterModules();
+        return mapper.readValue(json, Familie.class);
     }
 
     @SneakyThrows

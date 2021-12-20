@@ -1,5 +1,6 @@
 package org.meleschkin.mongodb;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.MongoNamespace;
@@ -10,6 +11,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.apache.logging.log4j.core.config.DefaultConfiguration;
 import org.bson.Document;
+import org.bson.json.JsonWriterSettings;
+import org.bson.types.ObjectId;
 import org.meleschkin.config.Configuration;
 import org.meleschkin.config.MyConfigurator;
 import org.meleschkin.eo.Familie;
@@ -41,7 +44,25 @@ public class MongoCRUDTest {
                 String json = JacksonTest.jsonFamilieSimple(meleschkin);
                 log.info(json);
                 Document doc = Document.parse(json);
+                ObjectId oid = new ObjectId();
+                log.info(oid.toString());
+                doc = doc.append("_id", oid);
+                log.info(doc.toString());
+                JsonWriterSettings.Builder builder = JsonWriterSettings.builder().indent(true);
+                String jsondoc = doc.toJson(builder.build());
+                log.info(jsondoc);
                 collection.insertOne(doc);
+                log.info("Count: " + collection.countDocuments());
+                BasicDBObject query = new BasicDBObject();
+                query.put("_id", oid);
+                Document docdb = collection.find(query).first();
+                if (docdb != null) {
+                    log.info(docdb.toString());
+                    String jsondocdb = docdb.toJson(builder.build());
+                    log.info(jsondocdb);
+                }
+                collection.findOneAndDelete(query);
+                log.info("Count: " + collection.countDocuments());
             }
         } catch (Exception e) {
             log.error(e.getMessage(), e);

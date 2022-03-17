@@ -1,0 +1,5 @@
+FROM maven
+WORKDIR /app
+COPY . .
+RUN mvn package
+CMD [ "java", "-cp", "target/JsonTest-1.0-SNAPSHOT-jar-with-dependencies.jar", "org.meleschkin.json.JsonTest" ]

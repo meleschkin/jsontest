@@ -12,69 +12,81 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <commons-lang3.version>3.13.0</commons-lang3.version>
+        <joda-time.version>2.12.5</joda-time.version>
+        <log4j-core.version>3.0.0-alpha1</log4j-core.version>
+        <log4j-api.version>3.0.0-alpha1</log4j-api.version>
+        <mongo-java-driver.version>3.12.14</mongo-java-driver.version>
+        <lombok.version>1.18.30</lombok.version>
+        <jackson-datatype-jsr310.version>2.16.0</jackson-datatype-jsr310.version>
+        <jackson-datatype-joda.version>2.16.0</jackson-datatype-joda.version>
+        <jackson-dataformat-yaml.version>2.16.0</jackson-dataformat-yaml.version>
+        <jackson-databind.version>2.16.0</jackson-databind.version>
+        <jackson-annotations.version>2.16.0</jackson-annotations.version>
+        <jackson-core.version>2.16.0</jackson-core.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.16.0-rc1</version>
+            <version>${jackson-core.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.16.0-rc1</version>
+            <version>${jackson-annotations.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.16.0-rc1</version>
+            <version>${jackson-databind.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-yaml</artifactId>
-            <version>2.16.0-rc1</version>
+            <version>${jackson-dataformat-yaml.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-joda</artifactId>
-            <version>2.16.0-rc1</version>
+            <version>${jackson-datatype-joda.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.16.0-rc1</version>
+            <version>${jackson-datatype-jsr310.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
-            <version>3.12.14</version>
+            <version>${mongo-java-driver.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>3.0.0-alpha1</version>
+            <version>${log4j-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>3.0.0-alpha1</version>
+            <version>${log4j-core.version}</version>
         </dependency>
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>2.12.5</version>
+            <version>${joda-time.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.13.0</version>
+            <version>${commons-lang3.version}</version>
         </dependency>
     </dependencies>
     <build>

@@ -12,7 +12,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <commons-lang3.version>3.13.0</commons-lang3.version>
+        <commons-lang3.version>3.14.0</commons-lang3.version>
         <joda-time.version>2.12.5</joda-time.version>
         <log4j-core.version>3.0.0-alpha1</log4j-core.version>
         <log4j-api.version>3.0.0-alpha1</log4j-api.version>

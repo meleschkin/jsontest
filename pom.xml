@@ -13,17 +13,17 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <commons-lang3.version>3.14.0</commons-lang3.version>
-        <joda-time.version>2.12.5</joda-time.version>
+        <joda-time.version>2.12.6</joda-time.version>
         <log4j-core.version>3.0.0-alpha1</log4j-core.version>
         <log4j-api.version>3.0.0-alpha1</log4j-api.version>
         <mongo-java-driver.version>3.12.14</mongo-java-driver.version>
         <lombok.version>1.18.30</lombok.version>
-        <jackson-datatype-jsr310.version>2.16.0</jackson-datatype-jsr310.version>
-        <jackson-datatype-joda.version>2.16.0</jackson-datatype-joda.version>
-        <jackson-dataformat-yaml.version>2.16.0</jackson-dataformat-yaml.version>
-        <jackson-databind.version>2.16.0</jackson-databind.version>
-        <jackson-annotations.version>2.16.0</jackson-annotations.version>
-        <jackson-core.version>2.16.0</jackson-core.version>
+        <jackson-datatype-jsr310.version>2.16.1</jackson-datatype-jsr310.version>
+        <jackson-datatype-joda.version>2.16.1</jackson-datatype-joda.version>
+        <jackson-dataformat-yaml.version>2.16.1</jackson-dataformat-yaml.version>
+        <jackson-databind.version>2.16.1</jackson-databind.version>
+        <jackson-annotations.version>2.16.1</jackson-annotations.version>
+        <jackson-core.version>2.16.1</jackson-core.version>
     </properties>
 
     <dependencies>

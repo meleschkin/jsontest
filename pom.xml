@@ -18,13 +18,13 @@
         <log4j-api.version>3.0.0-beta2</log4j-api.version>
         <slf4j-api.version>2.0.12</slf4j-api.version>
         <mongo-java-driver.version>5.0.0</mongo-java-driver.version>
-        <lombok.version>1.18.30</lombok.version>
-        <jackson-datatype-jsr310.version>2.17.0-rc1</jackson-datatype-jsr310.version>
-        <jackson-datatype-joda.version>2.17.0-rc1</jackson-datatype-joda.version>
-        <jackson-dataformat-yaml.version>2.17.0-rc1</jackson-dataformat-yaml.version>
-        <jackson-databind.version>2.17.0-rc1</jackson-databind.version>
-        <jackson-annotations.version>2.17.0-rc1</jackson-annotations.version>
-        <jackson-core.version>2.17.0-rc1</jackson-core.version>
+        <lombok.version>1.18.32</lombok.version>
+        <jackson-datatype-jsr310.version>2.17.0</jackson-datatype-jsr310.version>
+        <jackson-datatype-joda.version>2.17.0</jackson-datatype-joda.version>
+        <jackson-dataformat-yaml.version>2.17.0</jackson-dataformat-yaml.version>
+        <jackson-databind.version>2.17.0</jackson-databind.version>
+        <jackson-annotations.version>2.17.0</jackson-annotations.version>
+        <jackson-core.version>2.17.0</jackson-core.version>
     </properties>
 
     <dependencies>
@@ -106,7 +106,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>3.7.1</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
